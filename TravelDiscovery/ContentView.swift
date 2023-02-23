@@ -123,22 +123,36 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+struct Category: Hashable {
+    let name, imageName: String
+}
+
 struct DiscoverCatagoriesView: View {
+    
+    let categories: [Category] = [
+        .init(name: "Art", imageName: "paintpalette.fill"),
+        .init(name: "Sport", imageName: "sportscourt.fill"),
+        .init(name: "Live Events", imageName: "music.mic"),
+        .init(name: "Food", imageName: "carrot.fill"),
+        .init(name: "History", imageName: "house.lodge.fill"),
+    ]
+    
     var body: some View {
-        
         ScrollView(.horizontal, showsIndicators: false) {
             
             HStack(spacing: 8) {
-                ForEach( 0..<5, id: \.self) { num in
+                ForEach(categories, id: \.self) { category in
                     VStack(spacing: 4) {
-                        Spacer()
-                            .frame(width: 50, height: 50)
+//                        Spacer()
+                        Image(systemName: category.imageName)
+                            .foregroundColor(Color.white)
+                            .frame(width: 64, height: 64)
                             .background(Color.gray)
-                            .cornerRadius(.infinity)
-                            .shadow(color: .gray ,radius: 5, x: 0.0, y: 0.2)
-                        Text("Art")
+                            .cornerRadius(64)
+                            .shadow(color: .gray ,radius: 4, x: 0.0, y: 2)
+                        Text(category.name)
                             .font(.system(size: 12, weight: .semibold))
-                    }
+                    }.frame(width: 80)
                 }
             }.padding(.horizontal)
     //                .background(Color.blue)
