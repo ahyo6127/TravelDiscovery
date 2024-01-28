@@ -8,28 +8,61 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+    }
+    
     var body: some View {
         NavigationView {
-            
-            ScrollView {
+    
+            ZStack {
                 
-                DiscoverCatagoriesView()
+                LinearGradient(gradient: Gradient(colors: [Color.orange, Color.yellow]), startPoint: .top, endPoint: .center).ignoresSafeArea()
+                //Color.yellow.ignoresSafeArea()
                 
-                PopularDesnationsView()
+                Color(.init(white: 0.95, alpha: 1))
+                    .offset(y: 400)
                 
-                PopularRestaurantsView()
-                
-                TrendingCreatorsView()
-                
-            }.navigationTitle("Discover")
-        }
-        //            Image(systemName: "globe")
-        //                .imageScale(.large)
-        //                .foregroundColor(.accentColor)
-        //            Text("Hello, world!!!")
-        //                .padding()
-        //                .navigationBarTitle("Inline", displayMode: .inline)
+                ScrollView {
+                    
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        Text("Where do you want to go ?")
+                        Spacer()
+                    }.font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color(.init(white: 1, alpha: 0.3)))
+                    .cornerRadius(10)
+                    .padding(16)
+                    
+                    DiscoverCatagoriesView()
+                    
+                    VStack{
+                        PopularDesnationsView()
+                        
+                        PopularRestaurantsView()
+                        
+                        TrendingCreatorsView()
+                    }.background(Color(.init(white: 0.95, alpha: 1)))
+                        .cornerRadius(16)
+                        .padding(.top, 32)
+                    
+                }.navigationTitle("Discover")
+            }
+            //            Image(systemName: "globe")
+            //                .imageScale(.large)
+            //                .foregroundColor(.accentColor)
+            //            Text("Hello, world!!!")
+            //                .padding()
+            //                .navigationBarTitle("Inline", displayMode: .inline)
 
+            }
+            
+           
     }
 }
 
@@ -82,9 +115,9 @@ struct PopularDesnationsView: View {
                             
                         }
     //                        .frame(width: 125)
-                            .background(Color(.init(white: 0.9, alpha: 1)))
+                            .background(Color.white)
                             .cornerRadius(5)
-                            .shadow(color: .gray, radius: 4, x: 0.0, y: 0.2)
+                            .shadow(color: .init(.sRGB, white: 0.9, opacity: 1), radius: 4, x: 0.0, y: 0.2)
                             .padding(.bottom)
                     }
                 }.padding(.horizontal)
@@ -149,9 +182,9 @@ struct PopularRestaurantsView: View {
                             Spacer()
                             
                         }.frame(width: 240)
-                            .background(Color(.init(white: 0.9, alpha: 1)))
+                            .background(Color.white)
                             .cornerRadius(5)
-                            .shadow(color: .gray, radius: 4, x: 0.0, y: 0.2)
+                            .shadow(color: .init(.sRGB, white: 0.9, opacity: 1), radius: 4, x: 0.0, y: 0.2)
                             .padding(.bottom)
                     }
                 }.padding(.horizontal)
@@ -235,13 +268,16 @@ struct DiscoverCatagoriesView: View {
                     VStack(spacing: 4) {
 //                        Spacer()
                         Image(systemName: category.imageName)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.orange)
                             .frame(width: 64, height: 64)
-                            .background(Color.gray)
+                            .background(Color.white)
                             .cornerRadius(64)
-                            .shadow(color: .gray ,radius: 4, x: 0.0, y: 2)
+                            //.shadow(color: .gray ,radius: 4, x: 0.0, y: 2)
                         Text(category.name)
                             .font(.system(size: 12, weight: .semibold))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                        
                     }.frame(width: 80)
                 }
             }.padding(.horizontal)
