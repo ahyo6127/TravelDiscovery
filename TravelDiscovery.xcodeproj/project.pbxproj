@@ -14,6 +14,7 @@
 		208739A52B67F4E500340570 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739A42B67F4E500340570 /* Restaurant.swift */; };
 		208739A72B67F4F400340570 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739A62B67F4F400340570 /* User.swift */; };
 		208739A92B67F50A00340570 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739A82B67F50A00340570 /* Category.swift */; };
+		208739AC2B69036400340570 /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739AB2B69036400340570 /* TileModifier.swift */; };
 		20B9056A29A1E9AB0089DC31 /* TravelDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9056929A1E9AB0089DC31 /* TravelDiscoveryApp.swift */; };
 		20B9056C29A1E9AB0089DC31 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */; };
 		20B9056E29A1E9B30089DC31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B9056D29A1E9B30089DC31 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		208739A42B67F4E500340570 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		208739A62B67F4F400340570 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		208739A82B67F50A00340570 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		208739AB2B69036400340570 /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
 		20B9056629A1E9AB0089DC31 /* TravelDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B9056929A1E9AB0089DC31 /* TravelDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDiscoveryApp.swift; sourceTree = "<group>"; };
 		20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		208739AA2B69034A00340570 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				208739AB2B69036400340570 /* TileModifier.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		20B9055D29A1E9AA0089DC31 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 		20B9056829A1E9AB0089DC31 /* TravelDiscovery */ = {
 			isa = PBXGroup;
 			children = (
+				208739AA2B69034A00340570 /* Utils */,
 				208739A12B67F49200340570 /* Models */,
 				20C89D112B67EEBD0086B4A7 /* Discover */,
 				20B9056929A1E9AB0089DC31 /* TravelDiscoveryApp.swift */,
@@ -178,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2087399E2B67F35500340570 /* DiscoverCatagoriesView.swift in Sources */,
+				208739AC2B69036400340570 /* TileModifier.swift in Sources */,
 				208739A92B67F50A00340570 /* Category.swift in Sources */,
 				20B9056C29A1E9AB0089DC31 /* DiscoverView.swift in Sources */,
 				208739A02B67F38900340570 /* TrendingCreatorsView.swift in Sources */,

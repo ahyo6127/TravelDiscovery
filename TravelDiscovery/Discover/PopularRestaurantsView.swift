@@ -59,10 +59,9 @@ struct PopularRestaurantsView: View {
                             Spacer()
                             
                         }.frame(width: 240)
-                            .background(Color.white)
-                            .cornerRadius(5)
-                            .shadow(color: .init(.sRGB, white: 0.9, opacity: 1), radius: 4, x: 0.0, y: 0.2)
-                            .padding(.bottom)
+                        .asTile()
+                        //.modifier(TileModifier())
+                        .padding(.bottom)
                     }
                 }.padding(.horizontal)
             }
