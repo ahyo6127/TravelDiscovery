@@ -62,8 +62,6 @@ struct PopularDesnationsView: View {
     }
 }
 
-
-
 struct PopularDesnationsView_Previews: PreviewProvider {
     static var previews: some View {
         PopularDesnationsView()

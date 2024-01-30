@@ -69,8 +69,15 @@ struct PopularRestaurantsView: View {
     }
 }
 
-
-
-#Preview {
-    PopularRestaurantsView()
+struct PopularRestaurants_Preview : PreviewProvider {
+    static var previews: some View {
+        PopularRestaurantsView()
+        DiscoverView()
+    }
 }
+
+
+
+//#Preview {
+//    PopularRestaurantsView()
+//}

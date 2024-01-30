@@ -50,6 +50,13 @@ struct TrendingCreatorsView: View {
     }
 }
 
-#Preview {
-    TrendingCreatorsView()
+struct TrendingCreatorsView_Previews: PreviewProvider {
+    static var previews: some View {
+        TrendingCreatorsView()
+        DiscoverView()
+    }
 }
+
+//#Preview {
+//    TrendingCreatorsView()
+//}

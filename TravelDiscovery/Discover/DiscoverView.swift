@@ -43,7 +43,7 @@ struct DiscoverView: View {
                     .cornerRadius(10)
                     .padding(16)
                     
-                    DiscoverCatagoriesView()
+                    DiscoverCategoriesView()
                     
                     VStack{
                         PopularDesnationsView()
