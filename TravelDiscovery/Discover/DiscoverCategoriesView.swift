@@ -47,20 +47,69 @@ struct DiscoverCategoriesView: View {
     }
 }
 
-struct CategoryDetailsView: View {
-    var body: some View {
-        ScrollView {
-            ForEach(0..<5, id: \.self) { num in
-                VStack(alignment: .leading, spacing: 0){
-                    Image("Museum1")
-                        .resizable()
-                        .scaledToFill()
-                    Text("Demo123")
-                        .font(.system(size: 12, weight: .semibold))
-                        .padding()
+class CategoryDetailsViewModel: ObservableObject {
+    
+    @Published var isLoading = true
+    @Published var places = [Int]()
+    
+    init() {
+        //network code will happen here
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            self.isLoading = false
+            self.places = [1,2,3,4,5,6,7]
+        }
+    }
+}
 
-                }.asTile()
+struct ActivityIndicatorView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIActivityIndicatorView {
+        let aiv = UIActivityIndicatorView(style: .large)
+        aiv.startAnimating()
+        aiv.color = .white
+        return aiv
+    }
+    
+    typealias UIViewType = UIActivityIndicatorView
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
+        
+    }
+}
+
+struct CategoryDetailsView: View {
+    
+//    @State var isLoading = false
+    //Where do i perform my network activity code?
+    
+    @ObservedObject var vm = CategoryDetailsViewModel()
+    
+    var body: some View {
+        ZStack {
+            if vm.isLoading {
+                VStack {
+                    ActivityIndicatorView()
+                    Text("Loading")
+                        .foregroundColor(.white)
+                        .font(.system(size: 16, weight: .semibold))
+                }
+                .background(Color.black)
                 .padding()
+                .cornerRadius(8)
+                
+            } else {
+                ScrollView {
+                    ForEach(vm.places, id: \.self) { num in
+                        VStack(alignment: .leading, spacing: 0){
+                            Image("Museum1")
+                                .resizable()
+                                .scaledToFill()
+                            Text("Demo123")
+                                .font(.system(size: 12, weight: .semibold))
+                                .padding()
+
+                        }.asTile()
+                        .padding()
+                    }
+                }
             }
         }.navigationBarTitle("Category", displayMode: .inline)
     }
