@@ -15,6 +15,11 @@
 		208739A72B67F4F400340570 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739A62B67F4F400340570 /* User.swift */; };
 		208739A92B67F50A00340570 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739A82B67F50A00340570 /* Category.swift */; };
 		208739AC2B69036400340570 /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739AB2B69036400340570 /* TileModifier.swift */; };
+		208739AF2B6B83AB00340570 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 208739AE2B6B83AB00340570 /* Kingfisher */; };
+		208739B22B6B845000340570 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 208739B12B6B845000340570 /* SDWebImageSwiftUI */; };
+		208739B52B6B874700340570 /* CategoryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739B42B6B874700340570 /* CategoryDetailsView.swift */; };
+		208739B72B6B884600340570 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739B62B6B884600340570 /* ActivityIndicatorView.swift */; };
+		208739BA2B6B889F00340570 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208739B92B6B889F00340570 /* Place.swift */; };
 		20B9056A29A1E9AB0089DC31 /* TravelDiscoveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9056929A1E9AB0089DC31 /* TravelDiscoveryApp.swift */; };
 		20B9056C29A1E9AB0089DC31 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */; };
 		20B9056E29A1E9B30089DC31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B9056D29A1E9B30089DC31 /* Assets.xcassets */; };
@@ -31,6 +36,9 @@
 		208739A62B67F4F400340570 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		208739A82B67F50A00340570 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		208739AB2B69036400340570 /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
+		208739B42B6B874700340570 /* CategoryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsView.swift; sourceTree = "<group>"; };
+		208739B62B6B884600340570 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		208739B92B6B889F00340570 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		20B9056629A1E9AB0089DC31 /* TravelDiscovery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelDiscovery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B9056929A1E9AB0089DC31 /* TravelDiscoveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDiscoveryApp.swift; sourceTree = "<group>"; };
 		20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -44,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208739B22B6B845000340570 /* SDWebImageSwiftUI in Frameworks */,
+				208739AF2B6B83AB00340570 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +67,7 @@
 				208739A42B67F4E500340570 /* Restaurant.swift */,
 				208739A62B67F4F400340570 /* User.swift */,
 				208739A82B67F50A00340570 /* Category.swift */,
+				208739B92B6B889F00340570 /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -65,8 +76,17 @@
 			isa = PBXGroup;
 			children = (
 				208739AB2B69036400340570 /* TileModifier.swift */,
+				208739B62B6B884600340570 /* ActivityIndicatorView.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		208739B32B6B870400340570 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				208739B42B6B874700340570 /* CategoryDetailsView.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		20B9055D29A1E9AA0089DC31 = {
@@ -109,6 +129,7 @@
 		20C89D112B67EEBD0086B4A7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				208739B32B6B870400340570 /* Category */,
 				20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */,
 				20C89D122B67F0350086B4A7 /* PopularDesnationsView.swift */,
 				2087399B2B67F2CB00340570 /* PopularRestaurantsView.swift */,
@@ -134,6 +155,10 @@
 			dependencies = (
 			);
 			name = TravelDiscovery;
+			packageProductDependencies = (
+				208739AE2B6B83AB00340570 /* Kingfisher */,
+				208739B12B6B845000340570 /* SDWebImageSwiftUI */,
+			);
 			productName = TravelDiscovery;
 			productReference = 20B9056629A1E9AB0089DC31 /* TravelDiscovery.app */;
 			productType = "com.apple.product-type.application";
@@ -146,7 +171,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					20B9056529A1E9AB0089DC31 = {
 						CreatedOnToolsVersion = 14.2;
@@ -162,6 +187,10 @@
 				Base,
 			);
 			mainGroup = 20B9055D29A1E9AA0089DC31;
+			packageReferences = (
+				208739AD2B6B83AB00340570 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				208739B02B6B845000340570 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 20B9056729A1E9AB0089DC31 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -193,12 +222,15 @@
 				208739A92B67F50A00340570 /* Category.swift in Sources */,
 				20B9056C29A1E9AB0089DC31 /* DiscoverView.swift in Sources */,
 				208739A02B67F38900340570 /* TrendingCreatorsView.swift in Sources */,
+				208739BA2B6B889F00340570 /* Place.swift in Sources */,
 				2087399C2B67F2CB00340570 /* PopularRestaurantsView.swift in Sources */,
 				208739A52B67F4E500340570 /* Restaurant.swift in Sources */,
 				208739A72B67F4F400340570 /* User.swift in Sources */,
 				20B9056A29A1E9AB0089DC31 /* TravelDiscoveryApp.swift in Sources */,
 				20C89D132B67F0350086B4A7 /* PopularDesnationsView.swift in Sources */,
 				208739A32B67F4C800340570 /* Destination.swift in Sources */,
+				208739B72B6B884600340570 /* ActivityIndicatorView.swift in Sources */,
+				208739B52B6B874700340570 /* CategoryDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +273,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -301,6 +334,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -399,6 +433,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		208739AD2B6B83AB00340570 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
+		208739B02B6B845000340570 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		208739AE2B6B83AB00340570 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 208739AD2B6B83AB00340570 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		208739B12B6B845000340570 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 208739B02B6B845000340570 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 20B9055E29A1E9AA0089DC31 /* Project object */;
 }
