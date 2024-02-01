@@ -11,7 +11,7 @@ struct DiscoverCategoriesView: View {
     
     let categories: [Category] = [
         .init(name: "Art", imageName: "paintpalette.fill"),
-        .init(name: "Sport", imageName: "sportscourt.fill"),
+        .init(name: "Sports", imageName: "sportscourt.fill"),
         .init(name: "Live Events", imageName: "music.mic"),
         .init(name: "Food", imageName: "carrot.fill"),
         .init(name: "History", imageName: "house.lodge.fill"),
@@ -23,7 +23,7 @@ struct DiscoverCategoriesView: View {
             HStack(spacing: 8) {
                 ForEach(categories, id: \.self) { category in
                    NavigationLink(
-                    destination: CategoryDetailsView(),
+                    destination: CategoryDetailsView(name: category.name),
                     label: {
                         VStack(spacing: 4) {
     //                        Spacer()
@@ -49,9 +49,6 @@ struct DiscoverCategoriesView: View {
 
 struct DiscoverCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            CategoryDetailsView()
-        }
         DiscoverView()
 //        ZStack {
 //            Color.orange
