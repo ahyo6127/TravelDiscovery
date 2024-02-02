@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PopularDestinationsView: View {
     
     let destinations : [Destination] = [
-        .init(name: "Taipei", country: "Taiwan", imageName: "Taipei"),
-        .init(name: "Tokyo", country: "Japan", imageName: "Tokyo"),
-        .init(name: "New York", country: "United State", imageName: "New_York"),
+        .init(name: "Taipei", country: "Taiwan", imageName: "Taipei", latitude: 25.04841, longitude: 121.53301),
+        .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170),
+        .init(name: "New York", country: "United State", imageName: "New_York", latitude: 40.71592,  longitude: -74.0055),
     ]
     
     var body: some View {
@@ -46,18 +47,29 @@ struct PopularDestinationDetailsView: View {
     
     let destination: Destination
     
+//    @State var region = MKCoordinateRegion(center: .init(latitude: 35.68951, longitude: 139.69170), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    
+    @State var region: MKCoordinateRegion
+    
+    init(destination: Destination) {
+        self.destination = destination
+        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+    }
+    
     var body: some View {
         ScrollView {
             Image(destination.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 200)
+                .frame(height: 250)
                 .clipped()
             
             VStack(alignment: .leading){
                 Text(destination.name)
                     .font(.system(size: 16, weight: .bold))
+                    .padding(.top, 8)
                 Text(destination.country)
+                    .font(.system(size: 14))
                 
                 HStack {
                     ForEach(0..<5, id: \.self) { num in
@@ -68,16 +80,29 @@ struct PopularDestinationDetailsView: View {
                 
                 Text("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")
                     .padding(.top, 4)
-//                    .lineLimit(100)
-//                    .frame(height: 1000)
+                    .font(.system(size: 14))
 
-                
                 HStack{ Spacer() }
             }//.background(.blue)
             .padding(.horizontal)
+            
+            HStack(alignment: .top) {
+                Text("Location")
+                    .font(.system(size: 18, weight: .semibold))
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            Map(coordinateRegion: $region)
+                .frame(height: 200)
+            
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
+    
+  
 }
+
+
 
 struct PopularDestinationTile: View {
     
@@ -113,7 +138,8 @@ struct PopularDestinationTile: View {
 struct PopularDestinationsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei"))
+//            PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei", latitude: 25.04841, longitude: 121.53301))
+            PopularDestinationDetailsView(destination: .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170))
         }
          DiscoverView()
          PopularDestinationsView()
