@@ -21,17 +21,13 @@ struct DiscoverView: View {
     
     var body: some View {
         NavigationView {
-    
             ZStack {
-                
                 LinearGradient(gradient: Gradient(colors: [Color.orange, Color.yellow]), startPoint: .top, endPoint: .center).ignoresSafeArea()
-                //Color.yellow.ignoresSafeArea()
                 
                 Color.discoverBackground
                     .offset(y: 400)
                 
                 ScrollView {
-                    
                     HStack {
                         Image(systemName: "magnifyingglass")
                         Text("Where do you want to go ?")
@@ -46,25 +42,16 @@ struct DiscoverView: View {
                     DiscoverCategoriesView()
                     
                     VStack{
-                        PopularDesnationsView()
-                        
+                        PopularDestinationsView()
                         PopularRestaurantsView()
-                        
                         TrendingCreatorsView()
                     }.background(Color.discoverBackground)
-                        .cornerRadius(16)
-                        .padding(.top, 32)
-                    
+                    .cornerRadius(16)
+                    .padding(.top, 32)
+
                 }.navigationTitle("Discover")
             }
-            //            Image(systemName: "globe")
-            //                .imageScale(.large)
-            //                .foregroundColor(.accentColor)
-            //            Text("Hello, world!!!")
-            //                .padding()
-            //                .navigationBarTitle("Inline", displayMode: .inline)
-
-            }
+        }
     }
 }
 

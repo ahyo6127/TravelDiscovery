@@ -28,7 +28,6 @@ class CategoryDetailsViewModel: ObservableObject {
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                
                 //you want to check resp statusCode and err
                 if let statusCode = (resp as? HTTPURLResponse)?.statusCode,
                    statusCode >= 400 {
@@ -52,7 +51,6 @@ class CategoryDetailsViewModel: ObservableObject {
     }
 }
 
-
 struct CategoryDetailsView: View {
     
     private let name: String
@@ -66,7 +64,6 @@ struct CategoryDetailsView: View {
 //    let name: String
 //    @State var isLoading = false
 //    //Where do i perform my network activity code?
-//    
 //    @ObservedObject var vm = CategoryDetailsViewModel()
     
     var body: some View {
@@ -112,7 +109,6 @@ struct CategoryDetailsView: View {
                         }
                     }
                 }
-                
             }
         }.navigationBarTitle(name, displayMode: .inline)
     }
@@ -121,6 +117,5 @@ struct CategoryDetailsView: View {
 #Preview {
     NavigationView {
         CategoryDetailsView(name: "Live Events")
-
     }
 }

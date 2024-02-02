@@ -60,7 +60,6 @@ struct PopularRestaurantsView: View {
                             
                         }.frame(width: 240)
                         .asTile()
-                        //.modifier(TileModifier())
                         .padding(.bottom)
                     }
                 }.padding(.horizontal)

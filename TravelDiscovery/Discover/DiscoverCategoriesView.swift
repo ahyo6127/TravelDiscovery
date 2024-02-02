@@ -55,7 +55,6 @@ struct DiscoverCategoriesView: View {
                     })
                 }
             }.padding(.horizontal)
-    //                .background(Color.blue)
         }
     }
 }
@@ -63,10 +62,6 @@ struct DiscoverCategoriesView: View {
 struct DiscoverCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverView()
-//        ZStack {
-//            Color.orange
-//            DiscoverCategoriesView()
-//        }
     }
 }
 
