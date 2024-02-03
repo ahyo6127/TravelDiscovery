@@ -48,11 +48,11 @@ struct PopularDestinationDetailsView: View {
     let destination: Destination
     
     @State var region: MKCoordinateRegion
-    @State var isShowingAttractions = false
+    @State var isShowingAttractions = true
     
     init(destination: Destination) {
         self.destination = destination
-        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)))
     }
     
     var body: some View {
@@ -103,7 +103,10 @@ struct PopularDestinationDetailsView: View {
             .padding(.horizontal)
             
             Map(coordinateRegion: $region,  annotationItems: isShowingAttractions ?     attractions : [] ) { attraction in
-                MapMarker(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude), tint: .blue)
+//                MapMarker(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude), tint: .blue)
+                MapAnnotation(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude)) {
+                    CustomMapAnnotation(attraction: attraction)
+                }
             }
             .frame(height: 300)
             
@@ -111,16 +114,42 @@ struct PopularDestinationDetailsView: View {
     }
     
     let attractions: [Attraction] = [
-        .init(name: "Taipei101", latitude: 25.04841, longitude: 121.53301),
-        .init(name: "Taipei102", latitude: 25.05841, longitude: 121.54301),
-        .init(name: "Taipei103", latitude: 25.03841, longitude: 121.52301),
+        .init(name: "Taipei101", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301),
+        .init(name: "TaipeiArena", imageName: "TaipeiArena", latitude: 25.050664, longitude: 121.550095),
+        .init(name: "TaipeiNightMarket", imageName: "TaipeiNightMarket", latitude: 25.050617, longitude: 121.575145),
     ]
+}
+
+struct CustomMapAnnotation: View {
+    
+    let attraction: Attraction
+    
+    var body: some View {
+        VStack {
+            Image(attraction.imageName)
+                .resizable()
+                .frame(width: 80, height: 60)
+                .cornerRadius(3.0)
+            Text(attraction.name)
+                .font(.system(size: 12, weight: .semibold))
+                .padding(.vertical, 4)
+                .padding(.horizontal, 6)
+                .background(LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .foregroundColor(.white)
+//                .border(Color.black)
+                .cornerRadius(3.0)
+                .overlay(
+                     RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color(.init(white: 0, alpha: 0.5)))
+                )
+        }.shadow(radius: 5)
+    }
 }
 
 struct Attraction: Identifiable {
     let id = UUID().uuidString
     
-    let name: String
+    let name, imageName: String
     let latitude, longitude: Double
 }
 
