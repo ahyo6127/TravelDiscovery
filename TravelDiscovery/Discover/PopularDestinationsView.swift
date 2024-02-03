@@ -11,7 +11,7 @@ import MapKit
 struct PopularDestinationsView: View {
     
     let destinations : [Destination] = [
-        .init(name: "Taipei", country: "Taiwan", imageName: "Taipei", latitude: 25.04841, longitude: 121.53301),
+        .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301),
         .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170),
         .init(name: "New York", country: "United State", imageName: "New_York", latitude: 40.71592,  longitude: -74.0055),
     ]
@@ -47,9 +47,8 @@ struct PopularDestinationDetailsView: View {
     
     let destination: Destination
     
-//    @State var region = MKCoordinateRegion(center: .init(latitude: 35.68951, longitude: 139.69170), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
-    
     @State var region: MKCoordinateRegion
+    @State var isShowingAttractions = false
     
     init(destination: Destination) {
         self.destination = destination
@@ -61,7 +60,7 @@ struct PopularDestinationDetailsView: View {
             Image(destination.imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 250)
+                .frame(height: 150)
                 .clipped()
             
             VStack(alignment: .leading){
@@ -78,7 +77,7 @@ struct PopularDestinationDetailsView: View {
                     }
                 }.padding(.top, 2)
                 
-                Text("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.")
+                Text("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. ")
                     .padding(.top, 4)
                     .font(.system(size: 14))
 
@@ -86,23 +85,44 @@ struct PopularDestinationDetailsView: View {
             }//.background(.blue)
             .padding(.horizontal)
             
-            HStack(alignment: .top) {
+            HStack {
                 Text("Location")
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()
+                
+                Button(action: {isShowingAttractions.toggle() }, label: {
+                    Text("\(isShowingAttractions ? "Hide" : "Show") Atrractions")
+                        .font(.system(size: 14, weight: .semibold))
+                })
+                
+                //UIKit:UISwitch
+                Toggle("", isOn: $isShowingAttractions)
+                    .labelsHidden()
+                
             }
             .padding(.horizontal)
             
-            Map(coordinateRegion: $region)
-                .frame(height: 200)
+            Map(coordinateRegion: $region,  annotationItems: isShowingAttractions ?     attractions : [] ) { attraction in
+                MapMarker(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude), tint: .blue)
+            }
+            .frame(height: 300)
             
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
     
-  
+    let attractions: [Attraction] = [
+        .init(name: "Taipei101", latitude: 25.04841, longitude: 121.53301),
+        .init(name: "Taipei102", latitude: 25.05841, longitude: 121.54301),
+        .init(name: "Taipei103", latitude: 25.03841, longitude: 121.52301),
+    ]
 }
 
-
+struct Attraction: Identifiable {
+    let id = UUID().uuidString
+    
+    let name: String
+    let latitude, longitude: Double
+}
 
 struct PopularDestinationTile: View {
     
@@ -138,8 +158,8 @@ struct PopularDestinationTile: View {
 struct PopularDestinationsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-//            PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei", latitude: 25.04841, longitude: 121.53301))
-            PopularDestinationDetailsView(destination: .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170))
+            PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301))
+//            PopularDestinationDetailsView(destination: .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170))
         }
          DiscoverView()
          PopularDestinationsView()
