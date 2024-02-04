@@ -55,10 +55,14 @@ struct PopularDestinationDetailsView: View {
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)))
     }
     
+    
     var body: some View {
         ScrollView {
-            Image(destination.imageName)
-                .resizable()
+            
+            DestinationHeaderContainer()
+                .frame(height: 250)
+//            Image(destination.imageName)
+//                .resizable()
                 .scaledToFill()
                 .frame(height: 150)
                 .clipped()
