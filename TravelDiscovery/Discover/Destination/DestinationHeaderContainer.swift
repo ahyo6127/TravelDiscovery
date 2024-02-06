@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct DestinationHeaderContainer: UIViewControllerRepresentable {
+    
+    let imageNames: [String]
+    
     func makeUIViewController(context: Context) -> UIViewController {
 //        let redVC = UIHostingController(rootView: Text("First View Controller 123"))
 //        redVC.view.backgroundColor = .yellow
 //        return redVC
-        let pvc = CustomPageViewController()
+        let pvc = CustomPageViewController(imageNames: imageNames)
         return pvc
     }
     
@@ -48,15 +51,17 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     
-    let firstVC = UIHostingController(rootView: Text("First View Controller"))
-    let secondVC = UIHostingController(rootView: Text("Second View Controller"))
-    let thirdVC = UIHostingController(rootView: Text("Third View Controller"))
+//    let firstVC = UIHostingController(rootView: Text("First View Controller"))
+//    let secondVC = UIHostingController(rootView: Text("Second View Controller"))
+//    let thirdVC = UIHostingController(rootView: Text("Third View Controller"))
+//    
+//    lazy var allControllers: [UIViewController] = [
+//        firstVC, secondVC, thirdVC
+//    ]
     
-    lazy var allControllers: [UIViewController] = [
-        firstVC, secondVC, thirdVC
-    ]
+    var allControllers: [UIViewController] = []
 
-    init(){
+    init(imageNames: [String]) {
         
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.systemBlue
@@ -64,7 +69,18 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 //        view.backgroundColor = .orange
         
-        setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        allControllers = imageNames.map({
+            imageName in
+            let hostingController = UIHostingController(rootView:
+                Image(imageName)
+                .resizable()
+                .scaledToFill()
+            )
+            hostingController.view.clipsToBounds = true
+            return hostingController
+        })
+                
+        setViewControllers([allControllers.first!], direction: .forward, animated: true, completion: nil)
         
         self.dataSource = self
         self.delegate = self
@@ -76,7 +92,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
 
 struct DestinationHeaderContainer_Previews: PreviewProvider {
     static var previews: some View {
-            DestinationHeaderContainer()
+        DestinationHeaderContainer(imageNames: ["Taipei101", "Tokyo", "New_York"])
 //                .frame(height: 250)
             NavigationView {
                 PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301))
