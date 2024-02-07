@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DestinationHeaderContainer: UIViewControllerRepresentable {
     
-    let imageNames: [String]
+    let imageUrlStrings: [String]
     
     func makeUIViewController(context: Context) -> UIViewController {
 //        let redVC = UIHostingController(rootView: Text("First View Controller 123"))
 //        redVC.view.backgroundColor = .yellow
 //        return redVC
-        let pvc = CustomPageViewController(imageNames: imageNames)
+        let pvc = CustomPageViewController(imageUrlStrings: imageUrlStrings)
         return pvc
     }
     
@@ -61,7 +62,7 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
     var allControllers: [UIViewController] = []
 
-    init(imageNames: [String]) {
+    init(imageUrlStrings: [String]) {
         
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.systemBlue
@@ -69,10 +70,11 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 //        view.backgroundColor = .orange
         
-        allControllers = imageNames.map({
+        allControllers = imageUrlStrings.map({
             imageName in
-            let hostingController = UIHostingController(rootView:
-                Image(imageName)
+            let hostingController = UIHostingController(rootView: KFImage(URL(string: imageName))
+//                                                            Text(imageName)
+//                                                        Image(imageName)
                 .resizable()
                 .scaledToFill()
             )
@@ -91,9 +93,16 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
 }
 
 struct DestinationHeaderContainer_Previews: PreviewProvider {
+    
+    static let imageUrlStrings = [
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/b1642068-5624-41cf-83f1-3f6dff8c1702",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/2240d474-2237-4cd3-9919-562cd1bb439e"
+    ]
+    
     static var previews: some View {
-        DestinationHeaderContainer(imageNames: ["Taipei101", "Tokyo", "New_York"])
-//                .frame(height: 250)
+        DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
+                .frame(height: 250)
             NavigationView {
                 PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301))
 //        //            PopularDestinationDetailsView(destination: .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170))

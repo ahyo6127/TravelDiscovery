@@ -55,11 +55,16 @@ struct PopularDestinationDetailsView: View {
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)))
     }
     
+    let imageUrlStrings = [
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/b1642068-5624-41cf-83f1-3f6dff8c1702",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/2240d474-2237-4cd3-9919-562cd1bb439e"
+    ]
     
     var body: some View {
         ScrollView {
             
-            DestinationHeaderContainer(imageNames: ["Taipei101", "Tokyo", "New_York"])
+            DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
                 .frame(width: 350, height: 250)
 //            Image(destination.imageName)
 //                .frame(height: 150)
