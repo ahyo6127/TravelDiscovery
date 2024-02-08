@@ -11,7 +11,7 @@ import MapKit
 struct PopularDestinationsView: View {
     
     let destinations : [Destination] = [
-        .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301),
+        .init(name: "Paris", country: "France", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301),
         .init(name: "Tokyo", country: "Japan", imageName: "Tokyo", latitude: 35.68951, longitude: 139.69170),
         .init(name: "New York", country: "United State", imageName: "New_York", latitude: 40.71592,  longitude: -74.0055),
     ]
@@ -31,7 +31,9 @@ struct PopularDestinationsView: View {
                 HStack(spacing: 8.0) {
                     ForEach( destinations, id: \.self ) { destination in
                         NavigationLink (
-                        destination: PopularDestinationDetailsView(destination: destination),
+                        destination: 
+                            NavigationLazyView(PopularDestinationDetailsView(destination: destination))
+                            ,
                         label: {
                             PopularDestinationTile(destination: destination)
                                 .padding(.bottom)
@@ -43,7 +45,45 @@ struct PopularDestinationsView: View {
     }
 }
 
+struct DestinationDetails: Decodable {
+    let description: String
+    let photos: [String]
+}
+
+class DestinationDetailsViewModel: ObservableObject {
+    
+    @Published var isLoading = true
+    @Published var destinationDetails: DestinationDetails?
+    
+    init(name: String){
+        //let make a network call
+//        let name = "paris"
+        
+        guard let url = URL(string: "https://travel.letsbuildthatapp.com/travel_discovery/destination?name=\(name.lowercased())")
+        else { return }
+        URLSession.shared.dataTask(with: url) { data, resp, err in
+            //make sure to check your err & resp
+            
+            DispatchQueue.main.async {
+                guard let data = data else { return }
+                
+                do {
+                    self.destinationDetails = try
+                        JSONDecoder().decode(DestinationDetails.self, from: data)
+                    
+                } catch {
+                    print("Failed to decode JSON,", error)
+                }
+            }
+            
+        }.resume()
+    }
+}
+    
+
 struct PopularDestinationDetailsView: View {
+    
+    @ObservedObject var vm: DestinationDetailsViewModel
     
     let destination: Destination
     
@@ -53,6 +93,8 @@ struct PopularDestinationDetailsView: View {
     init(destination: Destination) {
         self.destination = destination
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)))
+        
+        self.vm = .init(name: destination.name)
     }
     
     let imageUrlStrings = [
@@ -64,13 +106,16 @@ struct PopularDestinationDetailsView: View {
     var body: some View {
         ScrollView {
             
-            DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
-                .frame(width: 350, height: 250)
+            if let photos = vm.destinationDetails? .photos {
+                DestinationHeaderContainer(imageUrlStrings: vm.destinationDetails?.photos ?? [])
+                    .frame(width: 350, height: 250)
+            }
+            
 //            Image(destination.imageName)
 //                .frame(height: 150)
 //                .resizable()
-                .scaledToFill()
-                .clipped()
+//                    .scaledToFill()
+//                    .clipped()
             
             VStack(alignment: .leading){
                 Text(destination.name)
@@ -86,7 +131,7 @@ struct PopularDestinationDetailsView: View {
                     }
                 }.padding(.top, 2)
                 
-                Text("There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. ")
+                Text(vm.destinationDetails? .description ?? "")
                     .padding(.top, 4)
                     .font(.system(size: 14))
 
