@@ -106,7 +106,7 @@ struct PopularDestinationDetailsView: View {
     var body: some View {
         ScrollView {
             
-            if let photos = vm.destinationDetails? .photos {
+            if (vm.destinationDetails? .photos) != nil {
                 DestinationHeaderContainer(imageUrlStrings: vm.destinationDetails?.photos ?? [])
                     .frame(width: 350, height: 250)
             }
@@ -131,11 +131,14 @@ struct PopularDestinationDetailsView: View {
                     }
                 }.padding(.top, 2)
                 
-                Text(vm.destinationDetails? .description ?? "")
-                    .padding(.top, 4)
-                    .font(.system(size: 14))
-
-                HStack{ Spacer() }
+                HStack {
+                    Text(vm.destinationDetails? .description ?? "")
+                        .padding(.top, 4)
+                        .font(.system(size: 14))
+                        Spacer()
+                }
+               
+//                HStack{ Spacer() }
             }//.background(.blue)
             .padding(.horizontal)
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2075F2DB2B7A5B1100937CF7 /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */; };
 		2087399C2B67F2CB00340570 /* PopularRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087399B2B67F2CB00340570 /* PopularRestaurantsView.swift */; };
 		2087399E2B67F35500340570 /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087399D2B67F35500340570 /* DiscoverCategoriesView.swift */; };
 		208739A02B67F38900340570 /* TrendingCreatorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087399F2B67F38900340570 /* TrendingCreatorsView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		2087399B2B67F2CB00340570 /* PopularRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantsView.swift; sourceTree = "<group>"; };
 		2087399D2B67F35500340570 /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
 		2087399F2B67F38900340570 /* TrendingCreatorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCreatorsView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2075F2D92B7A5AD400937CF7 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
 		208739A12B67F49200340570 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		20C89D112B67EEBD0086B4A7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				2075F2D92B7A5AD400937CF7 /* Restaurant */,
 				20F62B6B2B6FDB7F00E15BD5 /* Destination */,
 				208739B32B6B870400340570 /* Category */,
 				20B9056B29A1E9AB0089DC31 /* DiscoverView.swift */,
@@ -228,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2075F2DB2B7A5B1100937CF7 /* RestaurantDetailsView.swift in Sources */,
 				2087399E2B67F35500340570 /* DiscoverCategoriesView.swift in Sources */,
 				208739AC2B69036400340570 /* TileModifier.swift in Sources */,
 				208739A92B67F50A00340570 /* Category.swift in Sources */,
