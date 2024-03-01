@@ -77,7 +77,6 @@
 			children = (
 				208739A22B67F4C800340570 /* Destination.swift */,
 				208739A42B67F4E500340570 /* Restaurant.swift */,
-				208739A62B67F4F400340570 /* User.swift */,
 				208739A82B67F50A00340570 /* Category.swift */,
 				208739B92B6B889F00340570 /* Place.swift */,
 			);
@@ -141,6 +140,7 @@
 		20C89D112B67EEBD0086B4A7 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				208739A62B67F4F400340570 /* User.swift */,
 				2075F2D92B7A5AD400937CF7 /* Restaurant */,
 				20F62B6B2B6FDB7F00E15BD5 /* Destination */,
 				208739B32B6B870400340570 /* Category */,

@@ -12,7 +12,6 @@ struct PopularRestaurantsView: View {
     let restaurants: [Restaurant] = [
         .init(name: "Taipei's Night Market", imageName: "Bubble_MilkTea"),
         .init(name: "Taipei Finest Tapas", imageName: "Fried_Rice"),
-
     ]
     
     var body: some View{
@@ -42,7 +41,6 @@ struct PopularRestaurantsView: View {
         }
     }
 }
-
 
 
 struct RestaurantTile: View {
