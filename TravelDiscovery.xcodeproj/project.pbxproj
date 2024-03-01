@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		205827762B91C5E300C91483 /* RestaurantPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205827752B91C5E300C91483 /* RestaurantPhotosView.swift */; };
 		2075F2DB2B7A5B1100937CF7 /* RestaurantDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */; };
 		2087399C2B67F2CB00340570 /* PopularRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087399B2B67F2CB00340570 /* PopularRestaurantsView.swift */; };
 		2087399E2B67F35500340570 /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087399D2B67F35500340570 /* DiscoverCategoriesView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		205827752B91C5E300C91483 /* RestaurantPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPhotosView.swift; sourceTree = "<group>"; };
 		2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsView.swift; sourceTree = "<group>"; };
 		2087399B2B67F2CB00340570 /* PopularRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularRestaurantsView.swift; sourceTree = "<group>"; };
 		2087399D2B67F35500340570 /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				2075F2DA2B7A5B1100937CF7 /* RestaurantDetailsView.swift */,
+				205827752B91C5E300C91483 /* RestaurantPhotosView.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				20B9056A29A1E9AB0089DC31 /* TravelDiscoveryApp.swift in Sources */,
 				20C89D132B67F0350086B4A7 /* PopularDestinationsView.swift in Sources */,
 				208739A32B67F4C800340570 /* Destination.swift in Sources */,
+				205827762B91C5E300C91483 /* RestaurantPhotosView.swift in Sources */,
 				208739B72B6B884600340570 /* ActivityIndicatorView.swift in Sources */,
 				208739B52B6B874700340570 /* CategoryDetailsView.swift in Sources */,
 			);
