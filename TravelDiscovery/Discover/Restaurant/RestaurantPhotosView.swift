@@ -30,38 +30,81 @@ struct RestaurantPhotosView: View {
         "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/73f69749-f986-46ac-9b8b-d7b1d42bddc5"
         ]
     
+    @State var mode = "list"
+    
+    init() {
+        //this changes every UISegmentedControl in your application
+        UISegmentedControl.appearance().backgroundColor = .black
+        UISegmentedControl.appearance().selectedSegmentTintColor = .orange
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .normal)
+    }
+    
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
                 //GRID
                 
-                LazyVGrid(columns: [
-                    GridItem(.adaptive(minimum: proxy.size.width / 3 - 6, maximum: 300), spacing: 2)
-                    
-                ], spacing: 4, content: {
-                    
+                Picker("Test", selection: $mode) {
+                    Text("Grid").tag("grid")
+                    Text("List").tag("list")
+                }.pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                if mode == "grid" {
+                    LazyVGrid(columns: [
+                        GridItem(.adaptive(minimum: proxy.size.width / 3 - 6, maximum: 600), spacing: 2)
+                        
+                    ], spacing: 4, content: {
+                        
+                        ForEach(photosUrlStrings, id: \.self) { urlString in
+                            KFImage(URL(string: urlString))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
+                                .clipped()
+                         }
+                      
+                    }).padding(.horizontal, 2)
+                } else {
                     ForEach(photosUrlStrings, id: \.self) { urlString in
-                        KFImage(URL(string: urlString))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
-                            .clipped()
-    //                    Text("Placeholder")
-    //                        .padding()
-    //                        .background(Color.red)
+                        VStack(alignment: .leading, spacing: 12) {
+                            KFImage(URL(string: urlString))
+                                .resizable()
+                                .scaledToFill()
+                            
+                            HStack {
+                                Image(systemName: "heart")
+                                Image(systemName: "bubble.right")
+                                Image(systemName: "paperplane")
+                                Spacer()
+                                Image(systemName: "bookmark")
+                            }.padding(.horizontal, 8)
+                            .padding(2)
+                            .font(.system(size: 20))
+
+                            Text("Description for your post and if goes here, make sure to use a bunch of lines of text otherwise you never know what's going to happen.\n\nGreat job everyone")
+                                .font(.system(size: 14))
+                                .padding(.horizontal, 8)
+                            
+                            Text("Posted on 11/4/20")
+                                .font(.system(size: 12))
+                                .padding(.horizontal, 8)
+                                .foregroundColor(.gray)
+                            
+                        }.padding(.bottom)
                     }
-                  
-                }).padding(.horizontal, 2)
-            }.navigationBarTitle("All Photos", displayMode: .inline)
-        }
+                }
+            }
+        }.navigationBarTitle("All Photos", displayMode: .inline)
     }
 }
 
 #Preview {
     NavigationView {
         RestaurantPhotosView()
-            
     }
-    .navigationViewStyle(StackNavigationViewStyle())
-    .previewLayout(.fixed(width: 600, height: 1200))
+//    .navigationViewStyle(StackNavigationViewStyle())
+//    .previewLayout(.fixed(width: 1200, height: 1200))
 }
