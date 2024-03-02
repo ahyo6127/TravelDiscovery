@@ -108,7 +108,7 @@ struct PopularDestinationDetailsView: View {
             
             if (vm.destinationDetails? .photos) != nil {
                 DestinationHeaderContainer(imageUrlStrings: vm.destinationDetails?.photos ?? [])
-                    .frame(width: 350, height: 250)
+                    .frame(height: 300)
             }
             
 //            Image(destination.imageName)

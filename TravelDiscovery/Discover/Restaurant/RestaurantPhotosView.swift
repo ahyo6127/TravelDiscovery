@@ -30,7 +30,7 @@ struct RestaurantPhotosView: View {
         "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/73f69749-f986-46ac-9b8b-d7b1d42bddc5"
         ]
     
-    @State var mode = "list"
+    @State var mode = "grid"
     
     init() {
         //this changes every UISegmentedControl in your application
@@ -41,10 +41,30 @@ struct RestaurantPhotosView: View {
         UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .normal)
     }
     
+    @State var shouldShowFullscreenModal = false
+    @State var selectedPhotoIndex = 0
+    
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                //GRID
+                
+                Spacer()
+                    .fullScreenCover(isPresented: $shouldShowFullscreenModal, content: {
+                        ZStack(alignment: .topLeading) {
+                            
+                            Color.black.ignoresSafeArea()
+                            RestaurantCarouselContainer(imageUrlStrings: photosUrlStrings, selectedIndex: selectedPhotoIndex)
+                            
+                            Button {
+                                shouldShowFullscreenModal.toggle()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 24, weight: .regular))
+                                    .foregroundColor(.white)
+                                    .padding(16)
+                            }}
+                    })
+                    .opacity(shouldShowFullscreenModal ? 1 : 0)
                 
                 Picker("Test", selection: $mode) {
                     Text("Grid").tag("grid")
@@ -59,11 +79,17 @@ struct RestaurantPhotosView: View {
                     ], spacing: 4, content: {
                         
                         ForEach(photosUrlStrings, id: \.self) { urlString in
-                            KFImage(URL(string: urlString))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
-                                .clipped()
+                            
+                            Button(action: {
+                                self.selectedPhotoIndex = photosUrlStrings.firstIndex(of: urlString) ?? 0
+                                shouldShowFullscreenModal.toggle()
+                            }, label: {
+                                KFImage(URL(string: urlString))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
+                                    .clipped()
+                            })
                          }
                       
                     }).padding(.horizontal, 2)
