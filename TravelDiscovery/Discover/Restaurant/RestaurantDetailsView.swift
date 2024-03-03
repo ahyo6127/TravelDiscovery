@@ -131,7 +131,7 @@ struct RestaurantDetailsView: View {
             }.padding(.horizontal)
             
             ScrollView(.horizontal) {
-                HStack(spacing: 16) {
+                HStack(spacing: 8) {
                     ForEach(vm.details?.popularDishes ?? [], id: \.self) { dish in
                         DishCell(dish: dish)
                     }
@@ -206,7 +206,7 @@ struct DishCell: View {
     let dish: Dish
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8)  {
+        VStack(alignment: .leading, spacing: 6)  {
             ZStack(alignment: .bottomLeading) {
                 KFImage(URL(string: dish.photo))
                     .resizable()
@@ -224,12 +224,13 @@ struct DishCell: View {
             .frame(height: 120)
             .cornerRadius(5)
 
-            
-            Text(dish.name)
-                .font(.system(size: 14, weight: .bold))
-            Text("\(dish.numPhotos) photos")
-                .foregroundColor(.gray)
-                .font(.system(size: 12, weight: .regular))
+            VStack(alignment: .leading) {
+                Text(dish.name)
+                    .font(.system(size: 14, weight: .bold))
+                Text("\(dish.numPhotos) photos")
+                    .foregroundColor(.gray)
+                    .font(.system(size: 12, weight: .regular))
+            }
         }
     }
 }

@@ -10,9 +10,9 @@ import SwiftUI
 struct TrendingCreatorsView: View {
     
     let users: [User] = [
-        .init(name: "userMan 01", imageName: "userMan01"),
-        .init(name: "userMan 02", imageName: "userMan02"),
-        .init(name: "userMan 03", imageName: "userMan03"),
+        .init(id: 0, name: "userMan 01", imageName: "userMan01"),
+        .init(id: 1, name: "userMan 02", imageName: "userMan02"),
+        .init(id: 2, name: "userMan 03", imageName: "userMan03"),
     ]
     
     var body: some View{
@@ -29,13 +29,11 @@ struct TrendingCreatorsView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 8.0) {
                     ForEach( users, id: \.self ) { user in
-                        NavigationLink(destination: UserDetailsView(user: user), label: {
+                        NavigationLink(destination: NavigationLazyView(UserDetailsView(user: user)), label: {
                             DiscoverUserView(user: user)
-                            
                         })
-                        
-                        
                     }
+                    
                 }.padding(.horizontal)
                 .padding(.bottom)
             }
