@@ -10,7 +10,7 @@ import SwiftUI
 struct PopularRestaurantsView: View {
     
     let restaurants: [Restaurant] = [
-        .init(name: "Taipei's Night Market", imageName: "Bubble_MilkTea"),
+        .init(name: "Night Market", imageName: "Bubble_MilkTea"),
         .init(name: "Taipei Finest Tapas", imageName: "Fried_Rice"),
     ]
     
@@ -20,23 +20,27 @@ struct PopularRestaurantsView: View {
                 Text("Popular Place to Eat")
                     .font(.system(size: 14, weight: .semibold))
                 Spacer()
-                Text("See all")
+                Text("More")
                     .font(.system(size: 12, weight: .semibold))
             }.padding(.horizontal)
             .padding(.top)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8.0) {
+                    
                     ForEach( restaurants, id: \.self ) { restaurant in
                         NavigationLink(
                             destination: RestaurantDetailsView(restaurant: restaurant),
-                            label: {
+                            label: { 
                                 RestaurantTile(restaurant: restaurant)
                                     .foregroundColor(Color(.label))
                         })
                     }
-                }.padding(.horizontal)
+                    
+                }
+                .padding(.horizontal)
                 .padding(.bottom)
+                
             }
         }
     }
@@ -50,6 +54,7 @@ struct RestaurantTile: View {
     var body: some View {
         
         HStack(spacing: 8) {
+            
             Image(restaurant.imageName)
                 .resizable()
                 .scaledToFill()
@@ -76,12 +81,15 @@ struct RestaurantTile: View {
                 Text("Taipei, Taiwan")
                 
             }.font(.system(size: 12, weight: .semibold))
+            
             Spacer()
             
-        }.frame(width: 240)
+        }
+        .frame(width: 240)
         .asTile()
     }
 }
+
 
 struct PopularRestaurants_Preview : PreviewProvider {
     static var previews: some View {
@@ -89,9 +97,3 @@ struct PopularRestaurants_Preview : PreviewProvider {
         DiscoverView()
     }
 }
-
-
-
-//#Preview {
-//    PopularRestaurantsView()
-//}

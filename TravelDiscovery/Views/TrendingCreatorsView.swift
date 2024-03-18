@@ -21,26 +21,29 @@ struct TrendingCreatorsView: View {
                 Text("Popular Creators")
                     .font(.system(size: 14, weight: .semibold))
                 Spacer()
-                Text("See all")
+                Text("More")
                     .font(.system(size: 12, weight: .semibold))
             }.padding(.horizontal)
             .padding(.top)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 8.0) {
+                    
                     ForEach( users, id: \.self ) { user in
-                        NavigationLink(destination: NavigationLazyView(UserDetailsView(user: user)), label: {
-                            DiscoverUserView(user: user)
+                        NavigationLink(
+                            destination: NavigationLazyView(UserDetailsView(user: user)),
+                            label: { 
+                                DiscoverUserView(user: user)
                         })
                     }
                     
-                }.padding(.horizontal)
+                }
+                .padding(.horizontal)
                 .padding(.bottom)
             }
         }
     }
 }
-
 
 
 struct DiscoverUserView: View {
@@ -57,20 +60,17 @@ struct DiscoverUserView: View {
             Text(user.name)
                 .font(.system(size: 12, weight: .semibold))
                 .multilineTextAlignment(.center)
+                .foregroundStyle(Color(.black))
         }
         .frame(width: 60)
-        .shadow(color: .gray, radius: 4, x: 0.0, y: 0.2)
         .padding(.bottom)
-        .padding(.top)
-    }
-}
-struct TrendingCreatorsView_Previews: PreviewProvider {
-    static var previews: some View {
-//        TrendingCreatorsView()
-        DiscoverView()
+        .padding(.top, 4)
     }
 }
 
-//#Preview {
-//    TrendingCreatorsView()
-//}
+
+struct TrendingCreatorsView_Previews: PreviewProvider {
+    static var previews: some View {
+        DiscoverView()
+    }
+}

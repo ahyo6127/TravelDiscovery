@@ -20,7 +20,3 @@ struct ActivityIndicatorView: UIViewRepresentable {
         
     }
 }
-
-#Preview {
-    ActivityIndicatorView()
-}

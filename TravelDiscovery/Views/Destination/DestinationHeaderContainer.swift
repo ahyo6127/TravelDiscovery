@@ -1,23 +1,19 @@
 //
-//  RestaurantCarouselView.swift
+//  DestinationHeaderContainer.swift
 //  TravelDiscovery
 //
-//  Created by Travis on 2024/3/2.
+//  Created by Travis on 2024/2/4.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct RestaurantCarouselContainer: UIViewControllerRepresentable {
+struct DestinationHeaderContainer: UIViewControllerRepresentable {
     
     let imageUrlStrings: [String]
-    let selectedIndex: Int
     
     func makeUIViewController(context: Context) -> UIViewController {
-//        let redVC = UIHostingController(rootView: Text("First View Controller 123"))
-//        redVC.view.backgroundColor = .yellow
-//        return redVC
-        let pvc = CarouselPageViewController(imageUrlStrings: imageUrlStrings, selectedIndex: selectedIndex)
+        let pvc = CustomPageViewController(imageUrlStrings: imageUrlStrings)
         return pvc
     }
     
@@ -28,14 +24,14 @@ struct RestaurantCarouselContainer: UIViewControllerRepresentable {
     }
 }
 
-class CarouselPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         allControllers.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        self.selectedIndex
+        0
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -53,51 +49,51 @@ class CarouselPageViewController: UIPageViewController, UIPageViewControllerData
     }
     
     
-//    let firstVC = UIHostingController(rootView: Text("First View Controller"))
-//    let secondVC = UIHostingController(rootView: Text("Second View Controller"))
-//    let thirdVC = UIHostingController(rootView: Text("Third View Controller"))
-//
-//    lazy var allControllers: [UIViewController] = [
-//        firstVC, secondVC, thirdVC
-//    ]
-    
     var allControllers: [UIViewController] = []
-    var selectedIndex: Int
 
-    init(imageUrlStrings: [String], selectedIndex: Int) {
-        self.selectedIndex = selectedIndex
+    init(imageUrlStrings: [String]) {
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.systemBlue
 
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        //page that we swipe through
-        allControllers = imageUrlStrings.map({
-            imageName in
+        allControllers = imageUrlStrings.map ({ imageName in
+            
             let hostingController = UIHostingController(rootView:
-                ZStack {
-                    Color.black
                     KFImage(URL(string: imageName))
                     .resizable()
                     .scaledToFit()
-                }
             )
             hostingController.view.clipsToBounds = true
             return hostingController
         })
         
-        if selectedIndex < allControllers.count {
-            setViewControllers([allControllers[selectedIndex]], direction: .forward, animated: true, completion: nil)
+        if allControllers.first != nil{
+            setViewControllers([allControllers.first!], direction: .forward, animated: true, completion: nil)
         }
-        
-//        if allControllers.first != nil{
-//            setViewControllers([allControllers.first!], direction: .forward, animated: true, completion: nil)
-//        }
         
         self.dataSource = self
         self.delegate = self
     }
-    required init?(coder: NSCoder) {
+    required init? (coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+struct DestinationHeaderContainer_Previews: PreviewProvider {
+    
+    static let imageUrlStrings = [
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/b1642068-5624-41cf-83f1-3f6dff8c1702",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531",
+        "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/2240d474-2237-4cd3-9919-562cd1bb439e"
+    ]
+    
+    static var previews: some View {
+        DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
+                .frame(height: 250)
+            NavigationView {
+                PopularDestinationDetailsView(destination: .init(name: "Taipei", country: "Taiwan", imageName: "Taipei101", latitude: 25.04841, longitude: 121.53301))
+            }
     }
 }

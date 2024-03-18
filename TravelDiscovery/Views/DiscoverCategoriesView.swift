@@ -20,6 +20,7 @@ struct NavigationLazyView<Content: View>: View {
     }
 }
 
+
 struct DiscoverCategoriesView: View {
     
     let categories: [Category] = [
@@ -33,20 +34,18 @@ struct DiscoverCategoriesView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 14) {
+                
                 ForEach(categories, id: \.self) { category in
                    NavigationLink(
-                    destination:
-                        NavigationLazyView(CategoryDetailsView(name: category.name)),
+                    destination: NavigationLazyView(CategoryDetailsView(name: category.name)),
                     label: {
                         VStack(spacing: 8) {
-    //                        Spacer()
                             Image(systemName: category.imageName)
                                 .font(.system(size: 20))
                                 .foregroundColor(Color.orange)
                                 .frame(width: 64, height: 64)
                                 .background(Color.white)
                                 .cornerRadius(64)
-                                //.shadow(color: .gray ,radius: 4, x: 0.0, y: 2)
                             Text(category.name)
                                 .font(.system(size: 12, weight: .semibold))
                                 .multilineTextAlignment(.center)
@@ -54,26 +53,15 @@ struct DiscoverCategoriesView: View {
                         }.frame(width: 80)
                     })
                 }
+                
             }.padding(.horizontal)
         }
     }
 }
+
 
 struct DiscoverCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverView()
     }
 }
-
-
-//#Preview {
-//    DiscoverCategoriesView()
-//}
-
-//NavigationView {
-//            NavigationLink(
-//                destination: Text("Destination"),
-//                label: {
-//                    Text("Link")
-//            })
-//        }

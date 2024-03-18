@@ -17,7 +17,7 @@ class CategoryDetailsViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     init(name: String) {
-        //real network code
+        
         let urlString = "https://travel.letsbuildthatapp.com/travel_discovery/category?name=\(name.lowercased())".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
         guard let url = URL(string: urlString) else {
@@ -28,7 +28,7 @@ class CategoryDetailsViewModel: ObservableObject {
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                //you want to check resp statusCode and err
+                
                 if let statusCode = (resp as? HTTPURLResponse)?.statusCode,
                    statusCode >= 400 {
                     self.isLoading = false
@@ -47,9 +47,11 @@ class CategoryDetailsViewModel: ObservableObject {
                 
                 self.isLoading = false
             }
-        }.resume() //make sure to have resume
+            
+        }.resume()
     }
 }
+
 
 struct CategoryDetailsView: View {
     
@@ -61,10 +63,6 @@ struct CategoryDetailsView: View {
         self.name = name
         self.vm = .init(name: name)
     }
-//    let name: String
-//    @State var isLoading = false
-//    //Where do i perform my network activity code?
-//    @ObservedObject var vm = CategoryDetailsViewModel()
     
     var body: some View {
         ZStack {
@@ -94,20 +92,22 @@ struct CategoryDetailsView: View {
                     ScrollView {
                         ForEach(vm.places, id: \.self) { place in
                             VStack(alignment: .leading, spacing: 0){
-                                //KFImage(URL(string: place.thumbnail)!)
+                                
                                 WebImage(url: URL(string: place.thumbnail))
                                     .resizable()
-                                    .indicator(.activity) // Activity Indicator
-                                    .transition(.fade(duration: 0.5)) // Fade Transition with duration
+                                    .indicator(.activity)
+                                    .transition(.fade(duration: 0.5))
                                     .scaledToFill()
+                                
                                 Text(place.name)
                                     .font(.system(size: 12, weight: .semibold))
                                     .padding()
-
+                                
                             }.asTile()
                             .padding()
                         }
                     }
+                    
                 }
             }
         }.navigationBarTitle(name, displayMode: .inline)

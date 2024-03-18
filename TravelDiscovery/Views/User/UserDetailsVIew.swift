@@ -24,11 +24,13 @@ class UserDetailsViewModel: ObservableObject {
     @Published var userDetails: UserDetails?
     
     init(userID: Int) {
+        
         guard let url = URL(string: "https://travel.letsbuildthatapp.com/travel_discovery/user?id=\(userID)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             
             DispatchQueue.main.async {
+                
                 guard let data = data else { return }
                 
                 do {
@@ -38,14 +40,13 @@ class UserDetailsViewModel: ObservableObject {
                 }
                 print(data)
             }
-        
+            
         }.resume()
     }
 }
 
 struct UserDetailsView: View {
     
-    //setup dummy vm
     @ObservedObject var vm: UserDetailsViewModel
     
     let user: User
@@ -71,13 +72,11 @@ struct UserDetailsView: View {
                     .font(.system(size: 14, weight: .semibold))
                 
                 HStack {
-                    //option+8 •
                     Text("@\(self.vm.userDetails?.username ?? "") •")
                     Image(systemName: "hand.thumbsup.fill")
                         .font(.system(size: 10, weight: .semibold))
                     Text("2567")
-                }
-                .font(.system(size: 12, weight: .regular))
+                }.font(.system(size: 12, weight: .regular))
 
                 Text("Youtuber,  Vlogger,  Travel Creator")
                     .font(.system(size: 12, weight: .regular))
@@ -127,7 +126,6 @@ struct UserDetailsView: View {
                         .background(Color(white: 0.9))
                         .cornerRadius(100)
                     })
-                    
                 }.font(.system(size: 12, weight: .semibold))
                 
                 ForEach(vm.userDetails?.posts ?? [], id: \.self) { post in
@@ -165,11 +163,11 @@ struct UserDetailsView: View {
                                     .background(Color(#colorLiteral(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)))
                                     .cornerRadius(20)
                             }
-                        }.padding(.horizontal, 8)
+                        }
+                        .padding(.horizontal, 8)
                         .padding(.bottom, 10)
             
                     }
-//                    .frame(height: 250)
                     .background(Color(white: 1))
                     .cornerRadius(8)
                     .shadow(color: .init(white: 0.8), radius: 5, x: 0, y: 4)
@@ -180,8 +178,9 @@ struct UserDetailsView: View {
         }.navigationBarTitle(user.name, displayMode: .inline)
     }
 }
-#Preview {
 
+
+#Preview {
     NavigationView {
         UserDetailsView(user: .init(id: 0, name: "Amy Adams", imageName: "userMan01"))
     }

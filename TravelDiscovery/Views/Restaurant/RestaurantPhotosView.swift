@@ -33,13 +33,14 @@ struct RestaurantPhotosView: View {
     @State var mode = "grid"
     
     init() {
-        //this changes every UISegmentedControl in your application
         UISegmentedControl.appearance().backgroundColor = .black
         UISegmentedControl.appearance().selectedSegmentTintColor = .orange
+        
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributes, for: .normal)
     }
+    
     
     @State var shouldShowFullscreenModal = false
     @State var selectedPhotoIndex = 0
@@ -49,51 +50,56 @@ struct RestaurantPhotosView: View {
             ScrollView {
                 
                 Spacer()
-                    .fullScreenCover(isPresented: $shouldShowFullscreenModal, content: {
-                        ZStack(alignment: .topLeading) {
-                            
-                            Color.black.ignoresSafeArea()
-                            RestaurantCarouselContainer(imageUrlStrings: photosUrlStrings, selectedIndex: selectedPhotoIndex)
-                            
-                            Button {
-                                shouldShowFullscreenModal.toggle()
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 24, weight: .regular))
-                                    .foregroundColor(.white)
-                                    .padding(16)
+                    .fullScreenCover(
+                        isPresented: $shouldShowFullscreenModal,
+                        content: {
+                            ZStack(alignment: .topLeading) {
+                                
+                                Color.black.ignoresSafeArea()
+                                RestaurantCarouselContainer(imageUrlStrings: photosUrlStrings, selectedIndex: selectedPhotoIndex)
+                                
+                                Button { shouldShowFullscreenModal.toggle() }
+                                
+                                label: {
+                                    Image(systemName: "xmark")
+                                        .font(.system(size: 24, weight: .regular))
+                                        .foregroundColor(.white)
+                                        .padding(16)
                             }}
-                    })
-                    .opacity(shouldShowFullscreenModal ? 1 : 0)
+                        }
+                    ).opacity(shouldShowFullscreenModal ? 1 : 0)
                 
                 Picker("Test", selection: $mode) {
                     Text("Grid").tag("grid")
                     Text("List").tag("list")
-                }.pickerStyle(SegmentedPickerStyle())
+                }
+                .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 
                 if mode == "grid" {
-                    LazyVGrid(columns: [
-                        GridItem(.adaptive(minimum: proxy.size.width / 3 - 6, maximum: 600), spacing: 2)
-                        
-                    ], spacing: 4, content: {
-                        
-                        ForEach(photosUrlStrings, id: \.self) { urlString in
-                            
-                            Button(action: {
-                                self.selectedPhotoIndex = photosUrlStrings.firstIndex(of: urlString) ?? 0
-                                shouldShowFullscreenModal.toggle()
-                            }, label: {
-                                KFImage(URL(string: urlString))
+                    
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.adaptive(minimum: proxy.size.width / 3 - 6, maximum: 600), spacing: 2)
+                        ], spacing: 4,
+                        content: {
+                            ForEach(photosUrlStrings, id: \.self) { urlString in
+                                Button(
+                                action: {
+                                    self.selectedPhotoIndex = photosUrlStrings.firstIndex(of: urlString) ?? 0
+                                    shouldShowFullscreenModal.toggle()},
+                                label: {
+                                    KFImage(URL(string: urlString))
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: proxy.size.width / 3 - 3, height: proxy.size.width / 3 - 3)
                                     .clipped()
                             })
                          }
-                      
                     }).padding(.horizontal, 2)
+                    
                 } else {
+                    
                     ForEach(photosUrlStrings, id: \.self) { urlString in
                         VStack(alignment: .leading, spacing: 12) {
                             KFImage(URL(string: urlString))
@@ -106,7 +112,8 @@ struct RestaurantPhotosView: View {
                                 Image(systemName: "paperplane")
                                 Spacer()
                                 Image(systemName: "bookmark")
-                            }.padding(.horizontal, 8)
+                            }
+                            .padding(.horizontal, 8)
                             .padding(2)
                             .font(.system(size: 20))
 
@@ -121,16 +128,16 @@ struct RestaurantPhotosView: View {
                             
                         }.padding(.bottom)
                     }
+                    
                 }
             }
         }.navigationBarTitle("All Photos", displayMode: .inline)
     }
 }
 
+
 #Preview {
     NavigationView {
         RestaurantPhotosView()
     }
-//    .navigationViewStyle(StackNavigationViewStyle())
-//    .previewLayout(.fixed(width: 1200, height: 1200))
 }
