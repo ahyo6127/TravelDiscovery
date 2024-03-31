@@ -42,14 +42,14 @@ struct DiscoverCategoriesView: View {
                         VStack(spacing: 8) {
                             Image(systemName: category.imageName)
                                 .font(.system(size: 20))
-                                .foregroundColor(Color.orange)
+                                .foregroundColor(Color.cyan)
                                 .frame(width: 64, height: 64)
-                                .background(Color.white)
+                                .background(Color(.systemBackground))
                                 .cornerRadius(64)
                             Text(category.name)
                                 .font(.system(size: 12, weight: .semibold))
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color(.systemBackground))
                         }.frame(width: 80)
                     })
                 }

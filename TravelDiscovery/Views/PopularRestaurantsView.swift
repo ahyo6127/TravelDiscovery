@@ -22,8 +22,10 @@ struct PopularRestaurantsView: View {
                 Spacer()
                 Text("More")
                     .font(.system(size: 12, weight: .semibold))
-            }.padding(.horizontal)
+            }
+            .padding(.horizontal)
             .padding(.top)
+            .background(Color(.systemBackground))
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8.0) {
@@ -40,7 +42,6 @@ struct PopularRestaurantsView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-                
             }
         }
     }
@@ -70,7 +71,7 @@ struct RestaurantTile: View {
                     Spacer()
                     Button(action: {}, label: {
                         Image(systemName: "ellipsis")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.init(red: 0.4, green: 0.4, blue: 0.4))
                     })
                 }
                 HStack {
@@ -80,7 +81,9 @@ struct RestaurantTile: View {
                 }
                 Text("Taipei, Taiwan")
                 
-            }.font(.system(size: 12, weight: .semibold))
+            }
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundColor(.black)
             
             Spacer()
             

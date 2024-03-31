@@ -22,6 +22,7 @@ class DestinationDetailsViewModel: ObservableObject {
         
         guard let url = URL(string: "https://travel.letsbuildthatapp.com/travel_discovery/destination?name=\(name.lowercased())")
         else { return }
+        
         URLSession.shared.dataTask(with: url) { data, resp, err in
             
             DispatchQueue.main.async {
@@ -72,7 +73,7 @@ struct PopularDestinationDetailsView: View {
             
             VStack(alignment: .leading){
                 Text(destination.name)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 18, weight: .bold))
                     .padding(.top, 8)
                 Text(destination.country)
                     .font(.system(size: 14))
@@ -92,10 +93,11 @@ struct PopularDestinationDetailsView: View {
                 }
                 
             }.padding(.horizontal)
+                
             
             HStack {
                 Text("Location")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold))
                 
                 Spacer()
                 
@@ -120,6 +122,7 @@ struct PopularDestinationDetailsView: View {
             
             
         }.navigationBarTitle(destination.name, displayMode: .inline)
+//        .background(Color.white)
     }
     
     let attractions: [Attraction] = [

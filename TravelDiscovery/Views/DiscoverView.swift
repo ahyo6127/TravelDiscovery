@@ -14,14 +14,14 @@ extension Color {
 struct DiscoverView: View {
     
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [ .foregroundColor: UIColor.white
+        UINavigationBar.appearance().largeTitleTextAttributes = [ .foregroundColor: UIColor.systemBackground
         ]
     }
     
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color.orange, Color.yellow]), startPoint: .top, endPoint: .center).ignoresSafeArea()
+                LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan]), startPoint: .top, endPoint: .center).ignoresSafeArea()
                 
                 Color.discoverBackground
                     .offset(y: 400)
@@ -33,7 +33,7 @@ struct DiscoverView: View {
                         Spacer()
                     }
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(.systemBackground))
                     .padding()
                     .background(Color(.init(white: 1, alpha: 0.3)))
                     .cornerRadius(10)
@@ -46,7 +46,7 @@ struct DiscoverView: View {
                         PopularRestaurantsView()
                         TrendingCreatorsView()
                     }
-                    .background(Color.discoverBackground)
+                    .background(Color(.systemBackground))
                     .cornerRadius(16)
                     .padding(.top, 32)
 
@@ -59,6 +59,13 @@ struct DiscoverView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoverView()
+        ForEach([ColorScheme.dark, .light], id: \.self) { scheme in
+            DiscoverView().colorScheme(scheme)
+        }
+        
+//        VStack {
+//            DiscoverView().colorScheme(.dark)
+//            DiscoverView().colorScheme(.light)
+//        }
     }
 }

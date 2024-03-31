@@ -42,6 +42,7 @@ class RestaurantDetailsViewModel: ObservableObject {
         "https://travel.letsbuildthatapp.com/travel_discovery/restaurant?id=0"
         
         guard let url = URL(string: urlString) else { return }
+        
         URLSession.shared.dataTask(with: url) { (data, resp, err) in
             //handle your errors properly
             

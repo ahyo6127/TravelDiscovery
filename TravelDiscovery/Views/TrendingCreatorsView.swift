@@ -23,8 +23,10 @@ struct TrendingCreatorsView: View {
                 Spacer()
                 Text("More")
                     .font(.system(size: 12, weight: .semibold))
-            }.padding(.horizontal)
+            }
+            .padding(.horizontal)
             .padding(.top)
+            .background(Color(.systemBackground))
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 8.0) {
@@ -60,7 +62,7 @@ struct DiscoverUserView: View {
             Text(user.name)
                 .font(.system(size: 12, weight: .semibold))
                 .multilineTextAlignment(.center)
-                .foregroundStyle(Color(.black))
+                .foregroundStyle(Color(.label))
         }
         .frame(width: 60)
         .padding(.bottom)

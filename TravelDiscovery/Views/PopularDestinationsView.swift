@@ -26,6 +26,7 @@ struct PopularDestinationsView: View {
             }
             .padding(.horizontal)
             .padding(.top)
+            .background(Color(.systemBackground))
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8.0) {
@@ -63,12 +64,12 @@ struct PopularDestinationTile: View {
 
             Text(destination.name)
                 .font(.system(size: 12, weight: .semibold))
+                .foregroundColor(.black)
                 .padding(.horizontal, 12)
-                .foregroundColor(Color(.label))
             
             Text(destination.country)
                 .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(.gray)
+                .foregroundColor(.init(red: 0.4, green: 0.4, blue: 0.4))
                 .padding(.horizontal, 12)
                 .padding(.bottom, 8)
             
