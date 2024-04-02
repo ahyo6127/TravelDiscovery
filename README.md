@@ -21,35 +21,36 @@
 
 - Home Screen 主頁面 = DiscoverView
 - 支援Dark Mode ( 左Light Mode, 右Dark Mode )
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/13b10f08-5efa-4a77-b2d3-adc33fd279e5">
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/213600e8-b74f-40ba-ab9f-083b0e4844a2">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/13b10f08-5efa-4a77-b2d3-adc33fd279e5">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/213600e8-b74f-40ba-ab9f-083b0e4844a2">
 
   
 - 主頁面包含：
   
 1.DiscoverCategoriesView
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/4ec19832-b8ee-4a33-9a16-739fe39547f0">
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/66a810f9-0126-49b0-8acb-6f97dc32a8a3">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/4ec19832-b8ee-4a33-9a16-739fe39547f0">
+<img width="300" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/66a810f9-0126-49b0-8acb-6f97dc32a8a3">
 
 2.PopularDestinationsView
-<img width="364" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/e60ffa2a-58b6-4333-91a7-304c819e60d7">
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/fee82650-6965-4f97-baa5-4846b2180aba">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/e60ffa2a-58b6-4333-91a7-304c819e60d7">
+<img width="300" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/fee82650-6965-4f97-baa5-4846b2180aba">
 
 3.PopularRestaurantsView
-<img width="363" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/3902622d-bd15-4750-89f5-4af3162e9b97">
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/bc758253-7e67-427b-a245-04bc3fe51240">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/3902622d-bd15-4750-89f5-4af3162e9b97">
+<img width="300" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/bc758253-7e67-427b-a245-04bc3fe51240">
 
 4.TrendingCreatorsView
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/dec96399-2eb2-4d6b-9789-34e3aa931d07">
-<img width="361" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/e4c145a7-1e28-48d5-8e41-d4cb1ac3d04b">
+<img width="240" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/dec96399-2eb2-4d6b-9789-34e3aa931d07">
+<img width="300" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/e4c145a7-1e28-48d5-8e41-d4cb1ac3d04b">
 
-[ File Description ]
+[ File Description ]  
+  
+<img width="360" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/7c3734ef-6612-4522-af0b-82fa95cb6ac8">  
+  
 
-<img width="321" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/7c3734ef-6612-4522-af0b-82fa95cb6ac8">
-
-<img width="727" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/f1f14629-6941-451a-a9f8-cedd88a2e1d6">
-<img width="728" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/f09b3d75-e13e-42d6-a8a9-bbcef713d131">
-<img width="732" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/298f646f-3745-4310-97f9-7f2846af8bc1">
+<img width="600" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/f1f14629-6941-451a-a9f8-cedd88a2e1d6">  
+<img width="600" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/f09b3d75-e13e-42d6-a8a9-bbcef713d131">  
+<img width="600" alt="截圖" src="https://github.com/ahyo6127/TravelDiscovery/assets/57893533/298f646f-3745-4310-97f9-7f2846af8bc1">
   
 ---
   
